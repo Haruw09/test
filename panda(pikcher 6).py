@@ -76,7 +76,7 @@ def panda(x,y,size,scr): #x,y -координаты, size - размер, scr -�
     b_ell(x-1.7*size,y+0.7*size,0.8*size,0.2*size,15,white)
     b_ell(x-1.2*size,y-0.25*size,size*0.3,0.55*size,28,black)
     b_ell(x-2.1*size,y-0.25*size,size*0.3,0.55*size,-20,black)
-    circle(scr,black,(x-1.3*size,y+0.55*size),0.17*size)
+    ellipse(scr, black, (x - size * 1.13, y + size * 0.38, 0.34 * size, 0.34 * size))
     ellipse(scr,black,(x-1.72*size,y+0.9*size,0.3*size,0.17*size))
     ellipse(scr,black,(x-1.87*size,y+0.45*size,0.28*size,0.34*size))
 
