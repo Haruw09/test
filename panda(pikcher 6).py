@@ -3,58 +3,52 @@ from pygame.draw import *
 
 pygame.init()
 
+#задаем цвета
 green = (23, 114, 69)
 peach = (255, 204, 153)
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-
-def tree(x, y, a, b):  # a - "ширина" дерева, b - "длина" дерева
+# treewidth - "ширина" дерева, b - "длина" дерева
+def tree(x, y, treewidth, b):
 
     # ствол
-    rect(screen, green, (x, y - b, a, b), 0)
-    rect(screen, green, (x, y - 17 * b / 8, a, b), 0)
-    polygon(screen, green, [[x + a / 2, y - 18 * b / 8], [x - a / 8, y - 9 * b / 4 - a / 5], [x + a / 2, y - 3 * b],
-                            [x + 9 * a / 8, y - 3 * b + a / 5]])
-    aalines(screen, green, True,
-            [[x + a / 2, y - 18 * b / 8], [x - a / 8, y - 9 * b / 4 - a / 5], [x + a / 2, y - 3 * b],
-             [x + 9 * a / 8, y - 3 * b + a / 5]])
-    polygon(screen, green,
-            [[x + 3 * a / 4, y - 25 * b / 8], [x + 7 * a / 16, y - 25 * b / 8 - a / 10], [x + 27 * a / 16, y - 4 * b],
-             [x + 2 * a, y - 4 * b + a / 10]])
-    aalines(screen, green, True,
-            [[x + 3 * a / 4, y - 25 * b / 8], [x + 7 * a / 16, y - 25 * b / 8 - a / 10], [x + 27 * a / 16, y - 4 * b],
-             [x + 2 * a, y - 4 * b + a / 10]])
+    rect(screen, green, (x, y - b, treewidth, b), 0)
+    rect(screen, green, (x, y - 17 * b / 8, treewidth, b), 0)
+    polygon(screen, green, [[x + treewidth / 2, y - 18 * b / 8], [x - treewidth / 8, y - 9 * b / 4 - treewidth / 5], [x + treewidth / 2, y - 3 * b], [x + 9 * treewidth / 8, y - 3 * b + treewidth / 5]])
+    aalines(screen, green, True, [[x + treewidth / 2, y - 18 * b / 8], [x - treewidth / 8, y - 9 * b / 4 - treewidth / 5], [x + treewidth / 2, y - 3 * b], [x + 9 * treewidth / 8, y - 3 * b + treewidth / 5]])
+    polygon(screen, green, [[x + 3 * treewidth / 4, y - 25 * b / 8], [x + 7 * treewidth / 16, y - 25 * b / 8 - treewidth / 10], [x + 27 * treewidth / 16, y - 4 * b], [x + 2 * treewidth, y - 4 * b + treewidth / 10]])
+    aalines(screen, green, True, [[x + 3 * treewidth / 4, y - 25 * b / 8], [x + 7 * treewidth / 16, y - 25 * b / 8 - treewidth / 10], [x + 27 * treewidth / 16, y - 4 * b], [x + 2 * treewidth, y - 4 * b + treewidth / 10]])
 
     # листочки 5 штук
-    sur = pygame.Surface([6 * a, 0.8 * b], pygame.SRCALPHA, 32)
+    sur = pygame.Surface([6 * treewidth, 0.8 * b], pygame.SRCALPHA, 32)
     sur = sur.convert_alpha()
-    ellipse(sur, green, (0, 0, 0.6 * a, 0.7 * b), 0)
-    ellipse(sur, green, (a, 0.1 * b, 0.6 * a, 0.7 * b), 0)
-    ellipse(sur, green, (2 * a, 0, 0.6 * a, 0.7 * b), 0)
-    ellipse(sur, green, (3 * a, 0, 0.6 * a, 0.7 * b), 0)
-    ellipse(sur, green, (4 * a, 0.1 * b, 0.6 * a, 0.7 * b), 0)
+    ellipse(sur, green, (0, 0, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(sur, green, (treewidth, 0.1 * b, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(sur, green, (2 * treewidth, 0, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(sur, green, (3 * treewidth, 0, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(sur, green, (4 * treewidth, 0.1 * b, 0.6 * treewidth, 0.7 * b), 0)
     sur2 = pygame.transform.rotate(sur, -15)
     sur3 = pygame.transform.rotate(sur, 15)
-    screen.blit(sur2, (x - 8 * a, y - 3.5 * b))
-    screen.blit(sur3, (x + 4 * a, y - 3.9 * b))
+    screen.blit(sur2, (x - 8 * treewidth, y - 3.5 * b))
+    screen.blit(sur3, (x + 4 * treewidth, y - 3.9 * b))
 
     # листочки 3 штуки
-    mur = pygame.Surface([3 * a, 0.8 * b], pygame.SRCALPHA, 32)
+    mur = pygame.Surface([3 * treewidth, 0.8 * b], pygame.SRCALPHA, 32)
     mur = mur.convert_alpha()
-    ellipse(mur, green, (0, 0, 0.6 * a, 0.7 * b), 0)
-    ellipse(mur, green, (1.2 * a, 0.1 * b, 0.6 * a, 0.7 * b), 0)
-    ellipse(mur, green, (2.4 * a, 0, 0.6 * a, 0.7 * b), 0)
+    ellipse(mur, green, (0, 0, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(mur, green, (1.2 * treewidth, 0.1 * b, 0.6 * treewidth, 0.7 * b), 0)
+    ellipse(mur, green, (2.4 * treewidth, 0, 0.6 * treewidth, 0.7 * b), 0)
     mur2 = pygame.transform.rotate(mur, -15)
     mur3 = pygame.transform.rotate(mur, 10)
-    screen.blit(mur2, (x - 5 * a, y - 2 * b))
-    screen.blit(mur3, (x + 3 * a, y - 2.2 * b))
+    screen.blit(mur2, (x - 5 * treewidth, y - 2 * b))
+    screen.blit(mur3, (x + 3 * treewidth, y - 2.2 * b))
 
     # ветви
-    arc(screen, green, (x - 17 * a, y - 3.5 * b, 17 * a, 2.3 * b), 0.2, 3.14 / 2, 2)
-    arc(screen, green, (x - 7 * a, y - 2 * b, 7 * a, 2 * b), 0.3, 2.5 * 3.14 / 4, 2)
-    arc(screen, green, (x, y - 3.8 * b, 18 * a, 3 * b), 3.14 / 2, 3.14 - 0.6, 2)
-    arc(screen, green, (x + a, y - 2.3 * b, 7 * a, 2 * b), 3.14 / 3, 3.14 - 0.4, 2)
+    arc(screen, green, (x - 17 * treewidth, y - 3.5 * b, 17 * treewidth, 2.3 * b), 0.2, 3.14 / 2, 2)
+    arc(screen, green, (x - 7 * treewidth, y - 2 * b, 7 * treewidth, 2 * b), 0.3, 2.5 * 3.14 / 4, 2)
+    arc(screen, green, (x, y - 3.8 * b, 18 * treewidth, 3 * b), 3.14 / 2, 3.14 - 0.6, 2)
+    arc(screen, green, (x + treewidth, y - 2.3 * b, 7 * treewidth, 2 * b), 3.14 / 3, 3.14 - 0.4, 2)
 
 
 def panda(x, y, size, scr):  # x,y -координаты, size - размер, scr -пространство
